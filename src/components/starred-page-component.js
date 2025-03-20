@@ -25,7 +25,7 @@ class StarredPageComponent {
             pokeContainer.href = './detail.html?id=' + pokemon.id;
 
             const html = `
-                <img src="${pokemon.sprites.front_default}" alt="">
+                <img src="${pokemon.image}" alt="">
                 <h3>${pokemon.name}</h3>
             `
             pokeContainer.innerHTML = html;

@@ -1,5 +1,6 @@
-class HomePageComponent {
+import PokeCardComponent from "./poke-card-component.js";
 
+class HomePageComponent {
 
     constructor(pokeService, storageService) {
         this.pokeService = pokeService;
@@ -25,27 +26,12 @@ class HomePageComponent {
         for (let i = 0; i < pokemons.length; i++) {
 
             const pokemon = pokemons[i]
-            
-            const pokeContainer = document.createElement('a');
-            pokeContainer.href = './detail.html?id=' + pokemon.id;
 
-            const html = `
-                <img src="${pokemon.sprites.front_default}" alt="">
-                <h3>${pokemon.name}</h3>
-            `
-            pokeContainer.innerHTML = html;
+            const cardComponent = new PokeCardComponent(pokemon, this.storageService);
 
-            const saveBtn = document.createElement('button');
+            const card = cardComponent.render();
 
-            saveBtn.addEventListener('click', (event) => this.savePokemon(event, i))
-
-            const node = document.createTextNode('salva');
-
-            saveBtn.appendChild(node);
-
-            pokeContainer.appendChild(saveBtn);
-
-            mainContainer.appendChild(pokeContainer);
+            mainContainer.appendChild(card);
         }
     }
 

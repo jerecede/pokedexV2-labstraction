@@ -36,6 +36,14 @@ class PokeService {
 
             const request = fetch(pokeUrl)
                             .then(res => res.json())
+                            .then(data => {
+                                const littlePokemon = {
+                                    id: data.id,
+                                    name: data.name,
+                                    image: data.sprites.front_default
+                                };
+                                return littlePokemon;
+                            })
                             .catch(err => console.log(err));
                             
 
@@ -91,6 +99,14 @@ class PokeService {
 
             const request = fetch(pokeUrl)
                             .then(res => res.json())
+                            .then(data => {
+                                const littlePokemon = {
+                                    id: data.id,
+                                    name: data.name,
+                                    image: data.sprites.front_default
+                                };
+                                return littlePokemon;
+                            })
                             .catch(err => console.log(err));
                             
 

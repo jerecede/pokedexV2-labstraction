@@ -1,8 +1,10 @@
+import PokeCardComponent from "./poke-card-component.js";
+
 class TypePageComponent {
 
-
-    constructor(pokeService) {
+    constructor(pokeService, storageService) {
         this.pokeService = pokeService;
+        this.storageService = storageService;
     }
 
     async start(){
@@ -21,18 +23,15 @@ class TypePageComponent {
         const mainContainer = document.querySelector('#main-container');
         mainContainer.innerHTML = '';
 
-        for (const pokemon of pokemons) {
-            
-            const pokeContainer = document.createElement('a');
-            pokeContainer.href = './detail.html?id=' + pokemon.id;
+        for (let i = 0; i < pokemons.length; i++) {
 
-            const html = `
-                <img src="${pokemon.sprites.front_default}" alt="">
-                <h3>${pokemon.name}</h3>
-            `
-            pokeContainer.innerHTML = html;
+            const pokemon = pokemons[i]
 
-            mainContainer.appendChild(pokeContainer);
+            const cardComponent = new PokeCardComponent(pokemon, this.storageService);
+
+            const card = cardComponent.render();
+
+            mainContainer.appendChild(card);
         }
     }
 
